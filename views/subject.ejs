@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%=title%></title>
+  </head>
+  <body>
+    <h1>Subject Data</h1>
+    <a href="/">Return to Home</a><br><br>
+    <table>
+      <thead>
+        <th>No</th>
+        <th>Subject Name</th>
+      </thead>
+      <tbody>
+        <%let no=0; if (data){data.forEach(rows=>{no++%>
+          <tr>
+            <td><%=no%></td>
+            <td><%=rows.subject_name%></td>
+          </tr>
+        <%})}%>
+      </tbody>
+    </table>
+  </body>
+</html>
