@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title><%=title%></title>
+    <%-include partial/header%>
   </head>
   <body>
-    <h1>Subject Data</h1>
-    <a href="/">Return to Home</a><br><br>
-    <table>
+  <%-include partial/navigation%>
+    <h1 align="center">Subject Data</h1>
+    <table class="table table-bordered table-striped table-hover">
       <thead>
         <th>No</th>
         <th>Subject Name</th>
+        <th>Teachers</th>
+        <th>Actions</th>
       </thead>
       <tbody>
         <%let no=0; if (data){data.forEach(rows=>{no++%>
           <tr>
             <td><%=no%></td>
             <td><%=rows.subject_name%></td>
+            <td>
+              <%let urut=0; if (rows.teachers){rows.teachers.forEach(rowsTeachers=>{urut++%>
+                <%=urut%>. <%=rowsTeachers%><br>
+              <%})}%>
+            </td>
+            <td><a href="/subjects/<%=rows.id%>/enrolledstudents">Enrolled Students</a></td>
           </tr>
         <%})}%>
       </tbody>

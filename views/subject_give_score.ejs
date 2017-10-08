@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%-include partial/header%>
+</head>
+  <body>
+    <%-include partial/navigation%>
+    <h1 align="center">Give Scores</h1>
+    <div class="" align="center">
+      <a href="/subjects/<%=data[0].SubjectId%>/enrolledstudents">Return to Enrolled Students</a>
+    </div>
+    <div class="container">
+      <form class="form" action="/subjects/<%=data[0].StudentId%>/<%=data[0].SubjectId%>/givescore" method="post">
+        <div class="form-group">
+          <label>Name :</label>
+          <input class="form-control" type="text" value="<%=data[0].Student.getFullName()%>" readonly>
+        </div>
+        <div class="form-group">
+          <label>Subject :</label>
+          <input class="form-control" type="text" value="<%=data[0].Subject.subject_name%>" readonly>
+        </div>
+        <div class="form-group">
+          <label>Score :</label>
+          <input class="form-control" type="text" name="score" placeholder="score">
+        </div>
+        <button class="btn btn-primary" type="submit" name="button">Add Score</button>
+      </form>
+    </div>
+  </body>
+</html>

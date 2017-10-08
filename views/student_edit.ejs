@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title><%=title%></title>
+    <%-include partial/header%>
   </head>
   <body>
-    <h1>Edit Data Students</h1>
-    <a href="/students">Return to Students</a><br>
-    <%if (pesan_error!=''){%>
-      <h5><%=pesan_error%></h5>
-    <%}%>
-    <form class="" action="/students/edit/<%=data.id%>" method="post">
-      First Name <br>
-      <input type="text" name="first_name" value="<%=data.first_name%>" placeholder="first name"><br>
-      Last Name <br>
-      <input type="text" name="last_name" value="<%=data.last_name%>" placeholder="last name"><br>
-      Email <br>
-      <input type="text" name="email" value="<%=data.email%>" placeholder="email"><br><br>
-      <button type="submit" name="button">Edit Data</button>
-    </form>
+    <%-include partial/navigation%>
+    <h1 align="center">Edit Data Students</h1>
+    <div class="" align="center">
+      <a href="/students">Return to Students</a><br>
+      <%if (pesan_error!=''){%>
+        <h4><%=pesan_error%></h4>
+      <%}%>
+    </div> <br>
+    <div class="container">
+      <form class="form" action="/students/edit/<%=data.id%>" method="post">
+        <div class="form-group">
+          <label>First Name:</label>
+          <input class="form-control" type="text" name="first_name" value="<%=data.first_name%>" placeholder="first name">
+        </div>
+        <div class="form-group">
+          <label>Last Name:</label>
+          <input class="form-control" type="text" name="last_name" value="<%=data.last_name%>" placeholder="last name">
+        </div>
+        <div class="form-group">
+          <label>Email:</label>
+          <input class="form-control" type="text" name="email" value="<%=data.email%>" placeholder="email"><br
+        </div>
+        <button class="btn btn-primary" type="submit" name="button">Edit Data</button>
+      </form>
+    </div>
   </body>
 </html>

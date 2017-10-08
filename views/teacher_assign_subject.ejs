@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%-include partial/header%>
+  </head>
+  <body>
+    <%-include partial/navigation%>
+    <h1 align="center">Assign Subject</h1>
+    <div class="" align="center">
+      <a href="/teachers">Return to Teachers</a><br><br>
+    </div>
+    <div class="container">
+      <form class="form" action="/teachers/<%=dataTeachers.id%>/assign_subject" method="post">
+        <div class="form-group">
+          <label>Id Teacher :</label>
+          <input class="form-control" type="text" value="<%=dataTeachers.id%>" readonly>
+        </div>
+        <div class="form-group">
+          <label>Name :</label>
+          <input class="form-control" type="text" value="<%=dataTeachers.getFullName()%>" readonly>
+        </div>
+        <div class="form-group">
+          <label>Select Subject :</label>
+          <select class="form-control" name="SubjectId">
+            <%if (dataSubjects){dataSubjects.forEach(rows=>{%>
+              <option value="<%=rows.id%>"><%=rows.subject_name%></option>
+            <%})}%>
+          </select>
+        </div>
+        <button class="btn btn-primary" type="submit" name="button">Assign Subject</button>
+      </form>
+    </div>
+  </body>
+</html>

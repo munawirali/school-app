@@ -7,17 +7,21 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.STRING,
       validate:{
         isEmail: true,
-        isUnique: (value, next)=>{
-          Student.find({
-              where: {email: value},
-              attributes: ['id']
+        isUnique: function(value, next){
+          let oldId = this._modelOptions.whereCollection.id;
+          console.log('oldId====',oldId);
+          Student.find({where: {email: value}})
+          .then(function (student) {
+            console.log('new id',student.id);
+            console.log('old id',oldId);
+              // reject if a different student wants to use the same email
+              if (parseInt(oldId) !== student.id) {
+                  return next('Email already in use!');
+              }
+              return next();
           })
-          .done((error, Student)=>{
-              if (error)
-                  return next('Email address already in use!');
-              if (Student)
-                  return next(Student);
-              next();
+          .catch(function (err) {
+              return next(err);
           });
         }
       }
@@ -33,6 +37,10 @@ module.exports = (sequelize, DataTypes) => {
   // Instance Method
   Student.prototype.getFullName = function () {
     return `${this.first_name} ${this.last_name}`
+  }
+  Student.associate=function (models){
+    Student.hasMany(models.StudentSubject);
+    Student.belongsToMany(models.Subject, {through:'StudentSubject'});
   }
   return Student;
 };

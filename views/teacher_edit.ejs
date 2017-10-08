@@ -4,16 +4,16 @@
     <%-include partial/header%>
   </head>
   <body>
-    <%-include partial/navigation%>
-    <h1 align="center">Add Data Students</h1>
+  <%-include partial/navigation%>
+    <h1 align="center">Edit Data Teachers</h1>
     <div class="" align="center">
-      <a href="/students">Return to Students</a><br>
+      <a href="/teachers">Return to Teachers</a><br>
       <%if (pesan_error!=''){%>
-        <h4><%=pesan_error%></h4>
+        <a href="#"><%=pesan_error%></a><br>
       <%}%>
     </div>
     <div class="container">
-      <form class="form" action="/students/add" method="post">
+      <form class="form" action="/teachers/edit/<%=data.id%>" method="post">
         <div class="form-group">
           <label>First Name:</label>
           <input class="form-control" type="text" name="first_name" value="<%=data.first_name%>" placeholder="first name">
@@ -26,7 +26,7 @@
           <label>Email:</label>
           <input class="form-control" type="text" name="email" value="<%=data.email%>" placeholder="email"><br
         </div>
-        <button class="btn btn-primary" type="submit" name="button">Add Data</button>
+        <button class="btn btn-primary" type="submit" name="button">Edit Data</button>
       </form>
     </div>
   </body>

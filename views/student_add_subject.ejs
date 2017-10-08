@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%-include partial/header%>
+  </head>
+  <body>
+    <%-include partial/navigation%>
+    <h1 align="center">Add Subject to Student</h1>
+    <div class="" align="center">
+      <a href="/students">Return to Students</a>
+    </div><br>
+    <div class="container">
+      <form class="form" action="/students/<%=data.id%>/addsubject" method="post">
+        <div class="form-group">
+          <label>First Name:</label>
+          <input class="form-control" type="text" name="first_name" value="<%=data.first_name%>" readonly>
+        </div>
+        <div class="form-group">
+          <label>Last Name:</label>
+          <input class="form-control" type="text" name="last_name" value="<%=data.last_name%>" readonly>
+        </div>
+        <div class="form-group">
+          <label>Email:</label>
+          <input class="form-control" type="text" name="email" value="<%=data.email%>" readonly><br
+        </div>
+        <div class="form-group">
+          <label>Select Subject :</label>
+          <select class="form-control" name="SubjectId">
+            <%if (dataSubject){dataSubject.forEach(rows=>{%>
+              <option value="<%=rows.id%>"><%=rows.subject_name%></option>
+            <%})}%>
+          </select>
+        </div>
+        <button class="btn btn-primary" type="submit" name="button">Add Data</button>
+      </form>
+    </div>
+  </body>
+</html>

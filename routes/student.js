@@ -57,6 +57,7 @@ router.get('/edit/:id',(req,res)=>{
   })
 })
 router.post('/edit/:id',(req,res,next)=>{
+  // console.log('where=',req.params.id);
   models.Student.update({
     first_name:`${req.body.first_name}`,
     last_name:`${req.body.last_name}`,
@@ -66,7 +67,7 @@ router.post('/edit/:id',(req,res,next)=>{
       id:req.params.id
     }
   })
-  .then(rows=>{
+  .then(()=>{console.log('masuk sini');
     // res.send(rows);
     // res.render('students',{data:rows,title:`Halaman Students`});
     res.redirect('/students');
@@ -84,6 +85,7 @@ router.post('/edit/:id',(req,res,next)=>{
       res.send(err)
     }else {
       res.render('student_edit',{title:`School Applications : Edit Data Students`,data:temp,pesan_error:err.errors[0].message});
+      res.send(err)
     }
   })
 })
@@ -98,6 +100,33 @@ router.get('/delete/:id',(req,res)=>{
   })
   .catch(err=>{
     res.send(err);
+  })
+})
+router.get('/:id/addsubject',(req,res)=>{
+  models.Student.findById(req.params.id)
+  .then(rows=>{
+    models.Subject.findAll({
+      order:[['subject_name','asc']]
+    })
+    .then(rowsSubject=>{
+      // res.send(rows)
+       res.render('student_add_subject',{data:rows,dataSubject:rowsSubject,title:`School Applications : Add Subject to Student`});
+    })
+  })
+  .catch(err=>{
+    res.send(err);
+  })
+})
+router.post('/:id/addsubject',(req,res)=>{
+  models.StudentSubject.create({
+    StudentId:req.params.id,
+    SubjectId:req.body.SubjectId
+  })
+  .then(()=>{
+    res.redirect('/students');
+  })
+  .catch(err =>{
+    res.send(err)
   })
 })
 module.exports=router;
