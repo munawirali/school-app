@@ -39,10 +39,10 @@ router.post('/add',(req,res)=>{
       email:`${req.body.email}`
       }
     if (err.errors[0].message=='Validation isEmail on email failed') {
-      res.render('student_add',{title:`School Applications : Edit Data Students`,data:temp,pesan_error:'Your Email is not valid!'});
+      res.render('student_add',{title:`School Applications : Add Data Students`,data:temp,pesan_error:'Your Email is not valid!'});
       res.send(err)
     }else {
-      res.render('student_add',{title:`School Applications : Edit Data Students`,data:temp,pesan_error:err.errors[0].message});
+      res.render('student_add',{title:`School Applications : Add Data Students`,data:temp,pesan_error:err.errors[0].message});
     }
   })
 })

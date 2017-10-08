@@ -61,18 +61,21 @@ router.post('/add',(req,res)=>{//console.log('masuk');
       email:`${req.body.email}`
       }
     if (err.errors[0].message=='Validation isEmail on email failed') {
-      res.render('teacher_add',{title:`School Applications : Edit Data Teachers`,data:temp,pesan_error:'Your Email is not valid!'});
+      res.render('teacher_add',{title:`School Applications : Add Data Teachers`,data:temp,pesan_error:'Your Email is not valid!'});
       res.send(err)
     }else {
-      res.render('teacher_add',{title:`School Applications : Edit Data Teachers`,data:temp,pesan_error:err.errors[0].message});
+      res.render('teacher_add',{title:`School Applications : Add Data Teachers`,data:temp,pesan_error:err.errors[0].message});
     }
   })
 })
 router.get('/edit/:id',(req,res)=>{
   models.Teacher.findById(req.params.id)
   .then(rows=>{
-    // res.send(rows);
-    res.render('teacher_edit',{data:rows,title:`School Applications : Edit Data Teachers`,pesan_error:''});
+    models.Subject.findAll()
+    .then(rowSubjects=>{
+      // res.send(rows);
+      res.render('teacher_edit',{data:rows,dataSubjects:rowSubjects,title:`School Applications : Edit Data Teachers`,pesan_error:''});
+    })
   })
   .catch(err=>{
     res.send(err);
