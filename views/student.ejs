@@ -9,33 +9,35 @@
     <div class="" align="center">
       <a href="/students/add"><button class="btn btn-primary" type="button" name="button">Add Data</button></a>
     </div><br>
-    <table class="table table-bordered table-striped table-hover">
-      <thead>
-        <th>No</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Full Name</th>
-        <th>Email</th>
-        <th>Actions</th>
-        <th>Options</th>
-      </thead>
-      <tbody>
-        <%let no=0; if (data){data.forEach(rows=>{no++%>
-          <tr>
-            <td><%=no%></td>
-            <td><%=rows.first_name%></td>
-            <td><%=rows.last_name%></td>
-            <td><%=rows.getFullName()%></td>
-            <td><%=rows.email%></td>
-            <td><a href="/students/<%=rows.id%>/addsubject">Add Subject</a></td>
-            <td>
-              <a href="/students/edit/<%=rows.id%>">Edit</a>
-              <a href="#">|</a>
-              <a onclick="return confirm('Are you sure to delete this data?')" href="/students/delete/<%=rows.id%>">Delete</a>
-            </td>
-          </tr>
-        <%})}%>
-      </tbody>
-    </table>
+    <div class="container">
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <th>No</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+          <th>Options</th>
+        </thead>
+        <tbody>
+          <%let no=0; if (data){data.forEach(rows=>{no++%>
+            <tr>
+              <td><%=no%></td>
+              <td><%=rows.first_name%></td>
+              <td><%=rows.last_name%></td>
+              <td><%=rows.getFullName()%></td>
+              <td><%=rows.email%></td>
+              <td><a href="/students/<%=rows.id%>/addsubject">Add Subject</a></td>
+              <td>
+                <a href="/students/edit/<%=rows.id%>">Edit</a>
+                <a href="#">|</a>
+                <a onclick="return confirm('Are you sure to delete this data?')" href="/students/delete/<%=rows.id%>">Delete</a>
+              </td>
+            </tr>
+          <%})}%>
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>

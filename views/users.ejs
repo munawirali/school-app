@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%-include partial/header%>
+  </head>
+  <body>
+    <%- include partial/navigation%>
+    <h1 align="center">Data Users</h1>
+    <div class="" align="center">
+      <a href="/users/add"><button class="btn btn-primary" type="button" name="button">Add Data</button></a>
+    </div><br>
+    <div class="container">
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Username</th>
+            <!-- <th>Role</th> -->
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%let urut=0; if (data){data.forEach(row=>{urut++%>
+            <tr>
+              <td><%=urut%></td>
+              <td><%=row.username%></td>
+              <!-- <td><%=row.role%></td> -->
+              <td>
+                </script>
+                <a href="/users/edit/<%=row.id%>">Edit</a>
+                <a>|</a>
+                <a onclick="return confirm('Anda yakin akan menghapus data ini?')" href="/users/delete/<%=row.id%>">Delete</a>
+              </td>
+            </tr>
+          <%})}%>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

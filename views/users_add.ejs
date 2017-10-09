@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%-include partial/header%>
+    <style media="screen">
+      .container{
+        width: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <%-include partial/navigation%>
+    <h1 align="center">Add Data Users</h1>
+    <div class="" align="center">
+      <a href="/users">Return to Users</a>
+    </div>
+    <div class="container">
+      <form class="form" action="/users/add" method="post">
+        <div class="form-group">
+          <label>User Name:</label>
+          <input class="form-control" type="text" name="username" value="<%=data.username%>" placeholder="user name">
+        </div>
+        <div class="form-group">
+          <label>Passwor:</label>
+          <input class="form-control" type="password" name="password" value="<%=data.password%>" placeholder="password">
+        </div>
+        <div class="form-group">
+          <label>Select Subject :</label>
+          <select class="form-control" name="role">
+            <%if (data){data.forEach(rows=>{%>
+              <option value="<%=rows.role%>"><%=rows.role%></option>
+            <%})}%>
+          </select>
+        </div>
+        <button class="btn btn-primary" type="submit" name="button">Add Data</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -2,6 +2,14 @@
 <html>
   <head>
     <%-include partial/header%>
+    <style media="screen">
+      .container{
+        width: 500px;
+      }
+      h5{
+        color: red;
+      }
+    </style>
   </head>
   <body>
     <%-include partial/navigation%>
@@ -9,7 +17,7 @@
     <div class="" align="center">
       <a href="/students">Return to Students</a><br>
       <%if (pesan_error!=''){%>
-        <h4><%=pesan_error%></h4>
+        <h5><%=pesan_error%></h5>
       <%}%>
     </div> <br>
     <div class="container">
@@ -25,7 +33,7 @@
         <div class="form-group">
           <label>Email:</label>
           <input class="form-control" type="text" name="email" value="<%=data.email%>" placeholder="email"><br
-        </div>        
+        </div>
         <button class="btn btn-primary" type="submit" name="button">Edit Data</button>
       </form>
     </div>

@@ -2,6 +2,14 @@
 <html>
   <head>
     <%-include partial/header%>
+    <style media="screen">
+      .container{
+        width: 500px;
+      }
+      h5{
+        color: red;
+      }
+    </style>
   </head>
   <body>
   <%-include partial/navigation%>
@@ -9,7 +17,7 @@
     <div class="" align="center">
       <a href="/teachers">Return to Teachers</a><br>
       <%if (pesan_error!=''){%>
-        <a href="#"><%=pesan_error%></a><br>
+        <h5><%=pesan_error%></h5>
       <%}%>
     </div>
     <div class="container">

@@ -9,27 +9,29 @@
     <div class="" align="center">
       <a href="/subjects">Return to Subject</a><br><br>
     </div>
-    <table class="table table-bordered table-striped table-hover">
-      <thead>
-        <th>No</th>
-        <th>Name</th>
-        <th>Score By Number</th>
-        <th>Score By Letter</th>
-      </thead>
-      <tbody>
-        <% let i=1; if (data) {data[0].Students.forEach(row=>{%>
-          <tr>
-            <td><%=i++%></td>
-            <td><%=row.getFullName()%></td>
-            <%if (row.StudentSubject.score==null){%>
-              <td><a href="/subjects/<%=row.StudentSubject.StudentId%>/<%=row.StudentSubject.SubjectId%>/givescore">Give Score</a></td>
-            <%} else {%>
-              <td><%=row.StudentSubject.score%></td>
-            <%}%>
-            <td><%=row.getDataValue('score_leter')%></td>
-          </tr>
-        <%})}%>
-      </tbody>
-    </table>
+    <div class="container">
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <th>No</th>
+          <th>Name</th>
+          <th>Score By Number</th>
+          <th>Score By Letter</th>
+        </thead>
+        <tbody>
+          <% let i=1; if (data) {data[0].Students.forEach(row=>{%>
+            <tr>
+              <td><%=i++%></td>
+              <td><%=row.getFullName()%></td>
+              <%if (row.StudentSubject.score==null){%>
+                <td><a href="/subjects/<%=row.StudentSubject.id%>/givescore">Give Score</a></td>
+              <%} else {%>
+                <td><%=row.StudentSubject.score%></td>
+              <%}%>
+              <td><%=row.getDataValue('score_leter')%></td>
+            </tr>
+          <%})}%>
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>

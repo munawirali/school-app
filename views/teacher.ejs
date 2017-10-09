@@ -9,35 +9,37 @@
     <div class="" align="center">
       <a href="/teachers/add"><button class="btn btn-primary" type="button" name="button">Add Data</button></a>
     </div><br>
-    <table class="table table-bordered table-striped table-hover">
-      <thead>
-        <th>No</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Full Name</th>
-        <th>Email</th>
-        <th>Subject Name</th>
-        <th>Assign Subject</th>
-        <th>Options</th>
-      </thead>
-      <tbody>
-        <%let no=0; if (data){data.forEach(rows=>{no++%>
-          <tr>
-            <td><%=no%></td>
-            <td><%=rows.first_name%></td>
-            <td><%=rows.last_name%></td>
-            <td><%=rows.getFullName()%></td>
-            <td><%=rows.email%></td>
-            <td><%=rows.subject_name%></td>
-            <td><a href="/teachers/<%=rows.id%>/assign_subject">Assign</a></td>
-            <td>
-              <a href="/teachers/edit/<%=rows.id%>">Edit</a>
-              <a href="#">|</a>
-              <a onclick="return confirm('Are you sure to delete this data?')" href="/teachers/delete/<%=rows.id%>">Delete</a>
-            </td>
-          </tr>
-        <%})}%>
-      </tbody>
-    </table>
+    <div class="container">
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <th>No</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Subject Name</th>
+          <th>Assign Subject</th>
+          <th>Options</th>
+        </thead>
+        <tbody>
+          <%let no=0; if (data){data.forEach(rows=>{no++%>
+            <tr>
+              <td><%=no%></td>
+              <td><%=rows.first_name%></td>
+              <td><%=rows.last_name%></td>
+              <td><%=rows.getFullName()%></td>
+              <td><%=rows.email%></td>
+              <td><%=rows.subject_name%></td>
+              <td><a href="/teachers/<%=rows.id%>/assign_subject">Assign</a></td>
+              <td>
+                <a href="/teachers/edit/<%=rows.id%>">Edit</a>
+                <a href="#">|</a>
+                <a onclick="return confirm('Are you sure to delete this data?')" href="/teachers/delete/<%=rows.id%>">Delete</a>
+              </td>
+            </tr>
+          <%})}%>
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>

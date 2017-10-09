@@ -73,7 +73,7 @@ router.get('/edit/:id',(req,res)=>{
   .then(rows=>{
     models.Subject.findAll()
     .then(rowSubjects=>{
-      // res.send(rows);
+      // res.send(rowSubjects);
       res.render('teacher_edit',{data:rows,dataSubjects:rowSubjects,title:`School Applications : Edit Data Teachers`,pesan_error:''});
     })
   })
@@ -97,19 +97,29 @@ router.post('/edit/:id',(req,res,next)=>{
     res.redirect('/teachers');
   })
   .catch(err=>{
-    // res.send(err);
     let temp={
       id:req.params.id,
-      first_name:`${req.body.first_name}`,
-      last_name:`${req.body.last_name}`,
-      email:`${req.body.email}`
+      first_name:req.body.first_name,
+      last_name:req.body.last_name,
+      email:req.body.email
       }
-    if (err.errors[0].message=='Validation isEmail on email failed') {
-      res.render('teacher_edit',{title:`School Applications : Edit Data Seachers`,data:temp,pesan_error:'Your Email is not valid!'});
+
+    models.Subject.findAll()
+    .then(rowSubjects=>{
+      let pesan_err='';
+      if (err.errors[0].message=='Validation isEmail on email failed') {
+        pesan_err='Your Email is not valid!';
+      }else {
+        pesan_err=err.errors[0].message;
+      }
+      // console.log('err====',pesan_err);
+      // res.send(pesan_err);
+      // console.log('pesan_err',pesan_err);
+      res.render('teacher_edit',{title:`School Applications : Add Data Teachers`,dataSubjects:rowSubjects,data:temp,pesan_error:pesan_err});
+    })
+    .catch(err=>{
       res.send(err)
-    }else {
-      res.render('teacher_edit',{title:`School Applications : Edit Data Seachers`,data:temp,pesan_error:err.errors[0].message});
-    }
+    })
   })
 })
 router.get('/delete/:id',(req,res)=>{

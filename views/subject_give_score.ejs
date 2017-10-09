@@ -2,6 +2,11 @@
 <html>
 <head>
   <%-include partial/header%>
+  <style media="screen">
+    .container{
+      width: 500px;
+    }
+  </style>
 </head>
   <body>
     <%-include partial/navigation%>
@@ -10,7 +15,7 @@
       <a href="/subjects/<%=data[0].SubjectId%>/enrolledstudents">Return to Enrolled Students</a>
     </div>
     <div class="container">
-      <form class="form" action="/subjects/<%=data[0].StudentId%>/<%=data[0].SubjectId%>/givescore" method="post">
+      <form class="form" action="/subjects/<%=data[0].id%>/<%=data[0].SubjectId%>/givescore" method="post">
         <div class="form-group">
           <label>Name :</label>
           <input class="form-control" type="text" value="<%=data[0].Student.getFullName()%>" readonly>

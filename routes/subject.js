@@ -29,24 +29,16 @@ router.get('/',(req,res)=>{
     })
     Promise.all(promiseSubject)
     .then(newDataSubject=>{
-      console.log(promiseSubject);
+      // console.log(promiseSubject);
       // res.send(newDatateacher)
       res.render('subject',{data:newDataSubject,title:`School Applications : Data Subjects`});
     })
-
   })
   .catch(err=>{
     res.send(err);
   })
 })
-// models.Subject.findAll({
-//   where:{
-//     id:req.params.id
-//   },
-//   include:[{
-//     model:models.Student}]
-//   // order:[[model.ConjStudentSubject,model.Students,'first_name','ASC']]
-// })
+
 router.get('/:id/enrolledstudents',(req,res)=>{
   models.Subject.findAll({
     where:{
@@ -71,12 +63,11 @@ router.get('/:id/enrolledstudents',(req,res)=>{
   })
 })
 
-router.get('/:StudentId/:SubjectId/givescore',(req,res)=>{
+router.get('/:id/givescore',(req,res)=>{
   // console.log('StudentId='+req.params.StudentId+'SubjectId='+req.params.SubjectId);
   models.StudentSubject.findAll({
     where:{
-      StudentId:req.params.StudentId,
-      SubjectId:req.params.SubjectId
+      id:req.params.id
   },
     include:[{model:models.Student},{model:models.Subject}],
   })
@@ -86,14 +77,14 @@ router.get('/:StudentId/:SubjectId/givescore',(req,res)=>{
     res.render('subject_give_score',{data:rows,title:`School Applications : Give Score`})
   })
 })
-router.post('/:StudentId/:SubjectId/givescore',(req,res)=>{
-  // res.send(req.params.id);
+router.post('/:id/:SubjectId/givescore',(req,res)=>{
+  // console.log(req.params.id);
+  // console.log(req.body.score);
   models.StudentSubject.update({
     score:req.body.score
   },{
     where:{
-      StudentId:req.params.StudentId,
-      SubjectId:req.params.SubjectId
+      id:req.params.id
     }
   })
   .then(()=>{
