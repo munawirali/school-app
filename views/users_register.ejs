@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%-include partial/header%>
+    <style media="screen">
+      .container{
+        width: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 align="center">User Register</h1>
+    <div class="container">
+      <form class="form" action="/login/register" method="post">
+        <div class="form-group">
+          <label>User Name:</label>
+          <input class="form-control" type="text" name="username" value="<%=data.username%>" placeholder="user name">
+        </div>
+        <div class="form-group">
+          <label>Passwor:</label>
+          <input class="form-control" type="password" name="password" value="<%=data.password%>" placeholder="password">
+        </div>
+        <div class="form-group">
+          <label>Select Role :</label>
+          <select class="form-control" name="role">
+            <%if (data){data.forEach(rows=>{%>
+              <option value="<%=rows.role%>"><%=rows.role%></option>
+            <%})}%>
+          </select>
+        </div>
+        <button class="btn btn-primary" type="submit" name="button">Register</button>
+      </form>
+    </div>
+  </body>
+</html>

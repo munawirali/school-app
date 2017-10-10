@@ -55,10 +55,28 @@ router.post('/',(req,res)=>{
     res.render('login',{user:temp,pesanError:'username invalid!',title:`School Applications`});
   })
 })
-
 router.get('/logout',(req,res)=>{
   req.session.destroy();
   res.redirect('/login');
 })
+router.get('/register',(req,res)=>{
+  let rowsRole=[{role:'teacher'},{role:'academic'},{role:'headmaster'}]
+  res.render('users_register',{data:rowsRole,title:`School Applications : Add Data User`});
+})
+
+// ursers/add
+router.post('/register',(req,res)=>{
+  models.User.create({
+    username:`${req.body.username}`,
+    password:`${req.body.password}`,
+    role:`${req.body.role}`
+  })
+  .then(()=>{
+    res.redirect('/');
+  })
+  .catch(err =>{
+    res.send(err);
+  })
+});
 
 module.exports = router;

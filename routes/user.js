@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const model = require('../models');
+const models = require('../models');
 
 router.get('/',(req,res)=>{
-  model.User.findAll()
+  models.User.findAll()
   .then(rows=>{
     res.render('users',{data:rows,title:`School Applications : View Data Users`})
   })
@@ -19,7 +19,7 @@ router.get('/add',(req,res)=>{
 
 // ursers/add
 router.post('/add',(req,res)=>{
-  model.User.create({
+  models.User.create({
     username:`${req.body.username}`,
     password:`${req.body.password}`,
     role:`${req.body.role}`
@@ -33,7 +33,7 @@ router.post('/add',(req,res)=>{
 });
 
 router.get('/delete/:id',(req,res)=>{
-  model.User.destroy({
+  models.User.destroy({
     where:{
       id:req.params.id
     }
@@ -47,7 +47,7 @@ router.get('/delete/:id',(req,res)=>{
 })
 
 router.get('/edit/:id',(req,res)=>{//res.send(req.params.id)
-  model.User.findById(req.params.id)
+  models.User.findById(req.params.id)
   .then((rows)=>{
     let rowsRole=[{role:'teacher'},{role:'academic'},{role:'headmaster'}]
     res.render('users_edit',{data:rows,dataRole:rowsRole,title:'School Applications : Edit Data Users'});
@@ -59,7 +59,7 @@ router.get('/edit/:id',(req,res)=>{//res.send(req.params.id)
 })
 
 router.post('/edit/:id',(req,res)=>{
-  model.User.update({
+  models.User.update({
     username:`${req.body.username}`,
     password:`${req.body.password}`,
     role:`${req.body.role}`
